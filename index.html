@@ -40,14 +40,18 @@
             var username = document.getElementById('username').value;
             var password = document.getElementById('password').value;
 
-            fetch('https://script.google.com/macros/s/AKfycbwhFqd22TyW4j4QzDkAosOkNNbIrEFCYIWMnM44Mjwi1X22Cpq9b9Bq80_PQus7A7DSVw/exec', {
+            fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
                 method: 'POST',
-                mode: 'no-cors',
+                 // mode: 'no-cors', // 注意：在生产环境中，你可能需要处理CORS问题
                 headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
+                    'Content-Type': 'application/json'
                 },
-                body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
-            })
+                
+                body: JSON.stringify({
+                    username: username,
+                    password: password
+                  })
+                })
             .then(response => response.text())
             .then(text => {
                 // 如果登入成功，顯示消息
