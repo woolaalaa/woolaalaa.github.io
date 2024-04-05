@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,21 +10,55 @@
             margin: 40px;
             text-align: center;
         }
+        #message {
+            color: green;
+            font-size: 1.5em;
+        }
     </style>
 </head>
 <body>
     <h1>歡迎來到我的測試網站，幫助你各位帕魯不要再像白癡一樣做到死</h1>
     <p>試試看能不能登入啦，西八。</p>
+    
+    <form id="loginForm">
+        <div class="form-group">
+            <label for="username">帳號:</label>
+            <input type="text" id="username" name="username" required>
+        </div>
+        <div class="form-group">
+            <label for="password">密碼:</label>
+            <input type="password" id="password" name="password" required>
+        </div>
+        <button type="submit">登入</button>
+    </form>
+    <div id="message"></div>
+
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            var username = document.getElementById('username').value;
+            var password = document.getElementById('password').value;
+
+            fetch('https://script.google.com/macros/s/YOUR_SCRIPT_ID/exec', {
+                method: 'POST',
+                mode: 'no-cors',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: `username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`
+            })
+            .then(response => response.text())
+            .then(text => {
+                // 如果登入成功，顯示消息
+                if (text === "登入成功") {
+                    document.getElementById('message').textContent = '恭喜你已经登入';
+                } else {
+                    document.getElementById('message').textContent = '登入失敗';
+                }
+            })
+            .catch(error => console.error('Error!', error.message));
+        });
+    </script>
 </body>
-<form action="/login" method="post">
-    <div class="form-group">
-      <label for="username">帳號:</label>
-      <input type="text" id="username" name="username" required>
-    </div>
-    <div class="form-group">
-      <label for="password">密码:</label>
-      <input type="password" id="password" name="password" required>
-    </div>
-    <button type="submit">登入</button>
-  </form>
 </html>
