@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>帕魯轉職所</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -20,16 +22,17 @@
     <h1>歡迎來到我的測試網站，幫助你各位帕魯不要再像白癡一樣做到死</h1>
     <p>試試看能不能登入啦，西八。</p>
     
-    <form id="loginForm">
-        <div class="form-group">
-            <label for="username">帳號:</label>
-            <input type="text" id="username" name="username" required>
+    <!-- Update form to use Bootstrap classes -->
+    <form id="loginForm" class="container mt-5">
+        <div class="mb-3">
+            <label for="email" class="form-label">電子郵件:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
         </div>
-        <div class="form-group">
-            <label for="password">密碼:</label>
-            <input type="password" id="password" name="password" required>
+        <div class="mb-3">
+            <label for="password" class="form-label">密碼:</label>
+            <input type="password" class="form-control" id="password" name="password" required>
         </div>
-        <button type="submit">登入</button>
+        <button type="submit" class="btn btn-primary">登入</button>
     </form>
     <div id="message"></div>
 
@@ -37,7 +40,7 @@
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
 
-            var username = document.getElementById('username').value;
+            var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
 
             fetch('https://script.google.com/macros/s/AKfycbzrxmMvX8zmVImAzRzx3ZSQ-TvqMz4_Rs71oAqBA4eSEh5WZks4mL-dmgozz5xH1iWCvQ/exec', {
@@ -45,19 +48,25 @@
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
                 },
-                body: 'username=' + encodeURIComponent(username) + '&password=' + encodeURIComponent(password)
-                })
+                body: 'email=' + encodeURIComponent(email) + '&password=' + encodeURIComponent(password)
+            })
             .then(response => response.text())
             .then(text => {
                 // 如果登入成功，顯示消息
                 if (text === "登入成功") {
                     document.getElementById('message').textContent = '恭喜你已经登入';
+                    alert('登入成功'); // Show success alert
                 } else {
-                    document.getElementById('message').textContent = '登入失敗';
+                    alert('登入失敗'); // Show error alert
                 }
             })
-            .catch(error => console.error('Error!', error.message));
+            .catch(error => {
+                console.error('Error!', error.message);
+                alert('登入過程中出現錯誤'); // Show error alert
+            });
         });
     </script>
+    <!-- Include Bootstrap Bundle JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
