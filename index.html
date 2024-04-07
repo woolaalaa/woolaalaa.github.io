@@ -10,7 +10,6 @@
         body {
             font-family: Arial, sans-serif;
             margin: 40px;
-            text-align: center;
         }
         #message {
             color: green;
@@ -22,9 +21,9 @@
     <h1>歡迎來到我的測試網站，幫助你各位帕魯不要再像白癡一樣做到死</h1>
     <p>試試看能不能登入啦，西八。</p>
     
-    <!-- Update form to use Bootstrap classes and align to the left -->
+    <!-- Login form aligned to the left -->
     <div class="container mt-5">
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-4"> <!-- Adjust the column size as needed -->
                 <form id="loginForm">
                     <div class="mb-3">
@@ -40,6 +39,8 @@
             </div>
         </div>
     </div>
+    <div id="message"></div>
+
     <script>
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -47,7 +48,8 @@
             var email = document.getElementById('email').value;
             var password = document.getElementById('password').value;
 
-            fetch('https://script.google.com/macros/s/AKfycbzrxmMvX8zmVImAzRzx3ZSQ-TvqMz4_Rs71oAqBA4eSEh5WZks4mL-dmgozz5xH1iWCvQ/exec', {
+            // Replace 'YOUR_WEB_APP_URL' with the URL you got from the GAS deployment
+            fetch('YOUR_WEB_APP_URL', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
