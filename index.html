@@ -2,69 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login System</title>
-  <link href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 40px;
+  <title>Display Web</title>
+  <style type="text/css">
+    html {
+      overflow: auto;
     }
-    .form-container {
-      margin-top: 20px;
-      background: #f7f7f7;
-      padding: 20px;
-      border-radius: 8px;
-      width: 100%;
-      max-width: 400px;
-      margin: auto;
-    }
-    .btn-primary {
-      background-color: #007bff;
+    html,
+    body,
+    div,
+    iframe {
+      margin: 0px;
+      padding: 0px;
+      height: 100%;
       border: none;
+    }
+    iframe {
+      display: block;
       width: 100%;
-      padding: 10px;
+      border: none;
+      overflow-y: auto;
+      overflow-x: hidden;
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <div class="text-center" style="margin-bottom: 30px;">
-      <h2 class="active-tab">Login</h2>
-    </div>
-    
-    <div class="form-container">
-      <div class="mb-3">
-        <label for="username" class="form-label">Username</label>
-        <input type="text" class="form-control" id="username" placeholder="Enter username" required>
-      </div>
-      <div class="mb-3">
-        <label for="password" class="form-label">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Enter password" required>
-      </div>
-      <button type="submit" class="btn btn-primary" onclick="login()">Login</button>
-    </div>
-  </div>
-
-  <script>
-    function login() {
-      var email = document.getElementById('username').value.trim();
-      var password = document.getElementById('password').value.trim();
-
-      // 使用google.script.run调用服务端的loginUser函数
-      google.script.run.withSuccessHandler(function(loginSuccess) {
-        // 这个处理函数会在loginUser执行完毕后调用
-        if (loginSuccess) {
-          // 如果登录成功，通过客户端JavaScript重定向到front_page.html
-          window.location.href = 'front_page';
-        } else {
-          // 如果登录不成功，弹出提示
-          alert('Invalid username or password');
-        }
-      }).loginUser(email, password);
-    }
-  </script>
-
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.bundle.min.js"></script>
+  <iframe src="https://script.google.com/macros/s/AKfycbxKNOlx6Lo7JWJUDFcPibGJAm9QoKspmltULaZJRkAIRnFb0SFx4y3WE6ze0YHyFpHEFg/exec" frameborder="0" marginheight="0" marginwidth="0" width="100%" height="100%" scrolling="auto"></iframe>
 </body>
 </html>
